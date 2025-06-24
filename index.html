@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقع الشعر العربي</title>
+    <title>ديوان العراق - منصة الشعراء</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,12 +15,21 @@
 
 ```
     body {
-        font-family: 'Amiri', 'Georgia', serif;
-        direction: rtl;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        font-family: 'Cairo', sans-serif;
+        background-color: #FFF2E0;
         color: #333;
-        min-height: 100vh;
         line-height: 1.8;
+        overflow-x: hidden;
+    }
+
+    /* Header */
+    .header {
+        background: linear-gradient(135deg, #FFF2E0 0%, #FCF5EB 100%);
+        padding: 20px 0;
+        box-shadow: 0 2px 15px rgba(141, 110, 99, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
     }
 
     .container {
@@ -28,212 +38,385 @@
         padding: 0 20px;
     }
 
-    header {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 30px 0;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-    }
-
-    header::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>');
-        animation: twinkle 4s infinite;
-    }
-
-    @keyframes twinkle {
-        0%, 100% { opacity: 0.3; }
-        50% { opacity: 1; }
-    }
-
-    h1 {
-        font-size: 3rem;
-        color: white;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        margin-bottom: 10px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .subtitle {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1.2rem;
-        position: relative;
-        z-index: 1;
-    }
-
-    main {
-        padding: 40px 0;
-    }
-
-    .poems-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        gap: 30px;
-        margin-top: 30px;
-    }
-
-    .poem-card {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 30px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .poem-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-    }
-
-    .poem-card:hover::before {
-        transform: translateX(0);
-    }
-
-    .poem-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .poem-title {
-        font-size: 1.8rem;
-        color: #6a1b9a;
-        margin-bottom: 20px;
-        text-align: center;
-        position: relative;
-    }
-
-    .poem-title::after {
-        content: '❋';
-        display: block;
-        margin: 10px auto;
-        color: #ff6b6b;
-        font-size: 1.2rem;
-    }
-
-    .poem-content {
-        font-size: 1.3rem;
-        line-height: 2;
-        text-align: center;
-        color: #2c3e50;
-        margin-bottom: 20px;
-    }
-
-    .poem-content br {
-        margin-bottom: 10px;
-    }
-
-    .poem-meta {
+    .nav-bar {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 20px;
-        padding-top: 20px;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
-        font-size: 0.9rem;
-        color: #666;
+        margin-bottom: 20px;
     }
 
-    .like-btn {
-        background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-        color: white;
-        border: none;
+    .logo {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #8D6E63;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #8D6E63;
+        font-weight: 500;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
         padding: 8px 16px;
-        border-radius: 20px;
+        border-radius: 6px;
+    }
+
+    .nav-links a:hover {
+        color: #FFA857;
+        background: rgba(255, 168, 87, 0.1);
+        transform: translateY(-2px);
+    }
+
+    /* Search Bar */
+    .search-container {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .search-bar {
+        position: relative;
+        display: inline-block;
+        width: 500px;
+        max-width: 90%;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 15px 50px 15px 20px;
+        font-size: 1.1rem;
+        border: 2px solid #E0B700;
+        border-radius: 25px;
+        background: white;
+        font-family: 'Cairo', sans-serif;
+        transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+        outline: none;
+        border-color: #FFA857;
+        box-shadow: 0 0 15px rgba(255, 168, 87, 0.3);
+        transform: scale(1.02);
+    }
+
+    .search-btn {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #FFA857;
+        border: none;
+        padding: 10px;
+        border-radius: 50%;
         cursor: pointer;
         transition: all 0.3s ease;
-        font-size: 0.9rem;
     }
 
-    .like-btn:hover {
-        transform: scale(1.1);
+    .search-btn:hover {
+        background: #E0B700;
+        transform: translateY(-50%) scale(1.1);
     }
 
-    .like-btn.liked {
-        background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    /* Main Content */
+    .main-content {
+        min-height: calc(100vh - 200px);
+        padding-bottom: 100px;
     }
 
-    .stats {
-        display: flex;
-        gap: 15px;
+    .hero-section {
+        text-align: center;
+        padding: 50px 0;
+        background: linear-gradient(45deg, rgba(255, 168, 87, 0.1), rgba(224, 183, 0, 0.1));
+        border-radius: 20px;
+        margin-bottom: 60px;
     }
 
-    .stat {
+    .hero-title {
+        font-size: 3rem;
+        color: #8D6E63;
+        margin-bottom: 20px;
+        opacity: 0;
+        animation: fadeInUp 1s ease forwards;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+        color: #666;
+        margin-bottom: 30px;
+        opacity: 0;
+        animation: fadeInUp 1s ease 0.3s forwards;
+    }
+
+    /* Poetry Categories */
+    .categories-section {
+        margin-bottom: 60px;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #8D6E63;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(to right, #FFA857, #E0B700);
+        border-radius: 2px;
+    }
+
+    .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .category-card {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        box-shadow: 0 5px 20px rgba(141, 110, 99, 0.1);
+    }
+
+    .category-card:hover {
+        transform: translateY(-10px);
+        border-color: #FFA857;
+        box-shadow: 0 15px 40px rgba(255, 168, 87, 0.2);
+    }
+
+    .category-icon {
+        font-size: 3rem;
+        color: #FFA857;
+        margin-bottom: 20px;
+    }
+
+    .category-title {
+        font-size: 1.5rem;
+        color: #8D6E63;
+        margin-bottom: 15px;
+    }
+
+    .category-desc {
+        color: #666;
+        font-size: 1rem;
+    }
+
+    /* Content Display Area */
+    .content-display {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+        box-shadow: 0 10px 30px rgba(141, 110, 99, 0.1);
+        min-height: 400px;
+        display: none;
+    }
+
+    .content-display.active {
+        display: block;
+        animation: fadeInUp 0.5s ease;
+    }
+
+    /* Featured Poets */
+    .poets-section {
+        margin-bottom: 60px;
+    }
+
+    .poets-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .poet-card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 20px rgba(141, 110, 99, 0.1);
+    }
+
+    .poet-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(141, 110, 99, 0.2);
+    }
+
+    .poet-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #FFA857, #E0B700);
+        margin: 0 auto 20px;
         display: flex;
         align-items: center;
-        gap: 5px;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+        font-weight: bold;
     }
 
-    .floating-elements {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
+    .poet-name {
+        font-size: 1.3rem;
+        color: #8D6E63;
+        margin-bottom: 10px;
     }
 
-    .floating-element {
-        position: absolute;
-        opacity: 0.1;
-        animation: float 6s ease-in-out infinite;
+    .poet-bio {
+        color: #666;
+        margin-bottom: 20px;
+        font-size: 0.95rem;
     }
 
-    @keyframes float {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-20px) rotate(180deg); }
-    }
-
-    .add-poem-btn {
-        position: fixed;
-        bottom: 30px;
-        left: 30px;
-        background: linear-gradient(45deg, #667eea, #764ba2);
+    .follow-btn {
+        background: #FFA857;
         color: white;
         border: none;
-        padding: 15px 20px;
-        border-radius: 50px;
+        padding: 12px 24px;
+        border-radius: 25px;
+        font-family: 'Cairo', sans-serif;
+        font-weight: 500;
         cursor: pointer;
-        font-size: 1rem;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         transition: all 0.3s ease;
     }
 
-    .add-poem-btn:hover {
-        transform: scale(1.1);
+    .follow-btn:hover {
+        background: #E0B700;
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(224, 183, 0, 0.3);
     }
 
+    /* Poem of the Day */
+    .poem-day-section {
+        background: linear-gradient(135deg, #8D6E63, #A0806D);
+        padding: 40px;
+        border-radius: 20px;
+        color: white;
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    .poem-day-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .poem-content {
+        font-size: 1.2rem;
+        line-height: 2;
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+
+    .poem-author {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    /* Footer */
+    .footer {
+        background: linear-gradient(135deg, #8D6E63, #A0806D);
+        color: white;
+        text-align: center;
+        padding: 40px 20px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 999;
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .footer p {
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 20px;
+    }
+
+    .footer-links a {
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .footer-links a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
-        .poems-grid {
-            grid-template-columns: 1fr;
+        .nav-links {
+            display: none;
         }
         
-        h1 {
+        .hero-title {
             font-size: 2rem;
         }
         
-        .poem-card {
-            padding: 20px;
+        .search-bar {
+            width: 100%;
+        }
+        
+        .categories-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .footer-links {
+            flex-direction: column;
+            gap: 15px;
         }
     }
 </style>
@@ -241,213 +424,325 @@
 
 </head>
 <body>
-    <div class="floating-elements">
-        <div class="floating-element" style="top: 10%; right: 10%; font-size: 2rem;">🌟</div>
-        <div class="floating-element" style="top: 30%; right: 80%; font-size: 1.5rem; animation-delay: -2s;">✨</div>
-        <div class="floating-element" style="top: 60%; right: 20%; font-size: 2.5rem; animation-delay: -4s;">🌙</div>
-        <div class="floating-element" style="top: 80%; right: 70%; font-size: 1.8rem; animation-delay: -1s;">⭐</div>
-    </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav-bar">
+                <div class="logo">ديوان العراق</div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showHome()">الرئيسية</a></li>
+                    <li><a href="#" onclick="showPoets()">الشعراء</a></li>
+                    <li><a href="#" onclick="showPoetry()">الشعر</a></li>
+                    <li><a href="#" onclick="showEvents()">الفعاليات</a></li>
+                    <li><a href="#" onclick="showAbout()">عن الموقع</a></li>
+                </ul>
+            </nav>
 
 ```
-<header>
-    <div class="container">
-        <h1>موقع الشعر العربي</h1>
-        <p class="subtitle">حيث تتراقص الكلمات وتنساب المشاعر</p>
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="ابحث عن شاعر أو قصيدة...">
+                <button class="search-btn">🔍</button>
+            </div>
+        </div>
     </div>
 </header>
 
-<main>
+<!-- Main Content -->
+<main class="main-content">
     <div class="container">
-        <div class="poems-grid">
-            <article class="poem-card">
-                <h2 class="poem-title">قصيدة حب</h2>
-                <div class="poem-content">
-                    أحبك حبًا لو تحكيه الأشعار<br>
-                    لأشعلت نارًا في كل الديار<br>
-                    وأن تسألي عن مقدار هيامي<br>
-                    فإن البحر يعجز عن أن يجاري
-                </div>
-                <div class="poem-meta">
-                    <div class="stats">
-                        <div class="stat">
-                            <span>👁️</span>
-                            <span id="views1">142</span>
-                        </div>
-                        <div class="stat">
-                            <span>❤️</span>
-                            <span id="likes1">28</span>
-                        </div>
-                    </div>
-                    <button class="like-btn" onclick="toggleLike(1)">أعجبني</button>
-                </div>
-            </article>
+        <!-- Home Section -->
+        <div id="home-section">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h1 class="hero-title">مرحباً بك في ديوان العراق</h1>
+                <p class="hero-subtitle">منصة تجمع شعراء العراق وتراثهم الأدبي العريق</p>
+            </section>
 
-            <article class="poem-card">
-                <h2 class="poem-title">قصيدة حزن</h2>
+            <!-- Poem of the Day -->
+            <section class="poem-day-section">
+                <h2 class="poem-day-title">قصيدة اليوم</h2>
                 <div class="poem-content">
-                    في القلب جرح لا يلتئم<br>
-                    وفي العين دمعة لا تنتهي<br>
-                    يا ليل طال بي السهر<br>
-                    وأنا أناجي نجوم السماء
+                    يا نخلة الدار التي في ظلها<br>
+                    نشأت وقضيت أحلى أعوامي<br>
+                    ما زلت أحملك في ضميري منذ أن<br>
+                    شدت بي نحو الغربة أقدامي
                 </div>
-                <div class="poem-meta">
-                    <div class="stats">
-                        <div class="stat">
-                            <span>👁️</span>
-                            <span id="views2">89</span>
-                        </div>
-                        <div class="stat">
-                            <span>❤️</span>
-                            <span id="likes2">15</span>
-                        </div>
-                    </div>
-                    <button class="like-btn" onclick="toggleLike(2)">أعجبني</button>
-                </div>
-            </article>
+                <div class="poem-author">- محمد مهدي الجواهري</div>
+            </section>
 
-            <article class="poem-card">
-                <h2 class="poem-title">قصيدة أمل</h2>
-                <div class="poem-content">
-                    غدًا سيشرق فجر جديد<br>
-                    وتزهر في القلب أحلام<br>
-                    مهما طال الليل المظلم<br>
-                    فإن الصبح قريب المرام
-                </div>
-                <div class="poem-meta">
-                    <div class="stats">
-                        <div class="stat">
-                            <span>👁️</span>
-                            <span id="views3">203</span>
-                        </div>
-                        <div class="stat">
-                            <span>❤️</span>
-                            <span id="likes3">45</span>
-                        </div>
+            <!-- Poetry Categories -->
+            <section class="categories-section">
+                <h2 class="section-title">أقسام الشعر</h2>
+                <div class="categories-grid">
+                    <div class="category-card" onclick="showCategoryContent('classical')">
+                        <div class="category-icon">📜</div>
+                        <h3 class="category-title">الشعر العمودي</h3>
+                        <p class="category-desc">الشعر العربي التقليدي بأوزانه وبحوره الأصيلة</p>
                     </div>
-                    <button class="like-btn" onclick="toggleLike(3)">أعجبني</button>
-                </div>
-            </article>
 
-            <article class="poem-card">
-                <h2 class="poem-title">قصيدة الطبيعة</h2>
-                <div class="poem-content">
-                    في الروض أزهار تتراقص<br>
-                    والطير يشدو بأعذب الألحان<br>
-                    والنسيم يحمل عبق الياسمين<br>
-                    في أجمل ما خلق الرحمن
-                </div>
-                <div class="poem-meta">
-                    <div class="stats">
-                        <div class="stat">
-                            <span>👁️</span>
-                            <span id="views4">167</span>
-                        </div>
-                        <div class="stat">
-                            <span>❤️</span>
-                            <span id="likes4">32</span>
-                        </div>
+                    <div class="category-card" onclick="showCategoryContent('modern')">
+                        <div class="category-icon">✨</div>
+                        <h3 class="category-title">الشعر الحر</h3>
+                        <p class="category-desc">الشعر الحديث الذي تحرر من قيود الوزن والقافية</p>
                     </div>
-                    <button class="like-btn" onclick="toggleLike(4)">أعجبني</button>
+
+                    <div class="category-card" onclick="showCategoryContent('nabati')">
+                        <div class="category-icon">🏛️</div>
+                        <h3 class="category-title">الشعر النبطي</h3>
+                        <p class="category-desc">شعر البادية والصحراء بلهجته الأصيلة</p>
+                    </div>
+
+                    <div class="category-card" onclick="showCategoryContent('folk')">
+                        <div class="category-icon">🎭</div>
+                        <h3 class="category-title">الشعر الشعبي</h3>
+                        <p class="category-desc">الشعر باللهجة العراقية المحلية</p>
+                    </div>
                 </div>
-            </article>
+            </section>
+
+            <!-- Featured Poets -->
+            <section class="poets-section">
+                <h2 class="section-title">شعراء مميزون</h2>
+                <div class="poets-grid">
+                    <div class="poet-card">
+                        <div class="poet-avatar">ج</div>
+                        <h3 class="poet-name">محمد مهدي الجواهري</h3>
+                        <p class="poet-bio">شاعر العراق الأكبر، صاحب القصائد الخالدة في الوطنية والحب</p>
+                        <button class="follow-btn">متابعة</button>
+                    </div>
+
+                    <div class="poet-card">
+                        <div class="poet-avatar">ر</div>
+                        <h3 class="poet-name">معروف الرصافي</h3>
+                        <p class="poet-bio">شاعر الإصلاح والتجديد، رائد الشعر الاجتماعي في العراق</p>
+                        <button class="follow-btn">متابعة</button>
+                    </div>
+
+                    <div class="poet-card">
+                        <div class="poet-avatar">ك</div>
+                        <h3 class="poet-name">جميل صدقي الزهاوي</h3>
+                        <p class="poet-bio">فيلسوف الشعراء وشاعر الفلاسفة، صاحب النظرات العميقة</p>
+                        <button class="follow-btn">متابعة</button>
+                    </div>
+
+                    <div class="poet-card">
+                        <div class="poet-avatar">س</div>
+                        <h3 class="poet-name">بدر شاكر السياب</h3>
+                        <p class="poet-bio">رائد الشعر الحر، صاحب أجمل القصائد في الحنين والغربة</p>
+                        <button class="follow-btn">متابعة</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Content Display Areas -->
+        <div class="content-display" id="classical-content">
+            <h2 style="color: #8D6E63; margin-bottom: 30px;">الشعر العمودي</h2>
+            <div style="background: #FCF5EB; padding: 25px; border-radius: 10px; margin-bottom: 20px;">
+                <h3 style="color: #FFA857; margin-bottom: 15px;">يا دجلة الخير</h3>
+                <div style="line-height: 2.2; font-size: 1.1rem;">
+                    يا دجلة الخير يا أم البساتين<br>
+                    يا نبع عذب يروي كل العطاشى<br>
+                    منك الحياة ومنك النور منبعث<br>
+                    في كل واد وكل الأرض عطشى
+                </div>
+                <div style="margin-top: 15px; color: #8D6E63; font-weight: 600;">- الجواهري</div>
+            </div>
+            <button class="follow-btn" onclick="showPoemDetails()">اقرأ المزيد</button>
+        </div>
+
+        <div class="content-display" id="poets-content">
+            <h2 style="color: #8D6E63; margin-bottom: 30px;">شعراء العراق</h2>
+            <div class="poets-grid">
+                <div class="poet-card">
+                    <div class="poet-avatar">ن</div>
+                    <h3 class="poet-name">نازك الملائكة</h3>
+                    <p class="poet-bio">رائدة الشعر الحر في الأدب العربي</p>
+                    <button class="follow-btn">عرض الأعمال</button>
+                </div>
+                <div class="poet-card">
+                    <div class="poet-avatar">ع</div>
+                    <h3 class="poet-name">عبد الوهاب البياتي</h3>
+                    <p class="poet-bio">من أعلام الشعر العربي المعاصر</p>
+                    <button class="follow-btn">عرض الأعمال</button>
+                </div>
+            </div>
         </div>
     </div>
 </main>
 
-<button class="add-poem-btn" onclick="addNewPoem()">
-    ➕ إضافة قصيدة جديدة
-</button>
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <p>© 2025 ديوان العراق - منصة الشعراء العراقيين</p>
+        <p>حقوق الطبع والنشر محفوظة</p>
+        <div class="footer-links">
+            <a href="#">سياسة الخصوصية</a>
+            <a href="#">شروط الاستخدام</a>
+            <a href="#">اتصل بنا</a>
+            <a href="#">عن الموقع</a>
+        </div>
+    </div>
+</footer>
 
 <script>
-    let likedPoems = {};
+    // Navigation Functions
+    function showHome() {
+        hideAllSections();
+        document.getElementById('home-section').style.display = 'block';
+    }
 
-    function toggleLike(poemId) {
-        const btn = event.target;
-        const likesElement = document.getElementById(`likes${poemId}`);
-        let currentLikes = parseInt(likesElement.textContent);
+    function showPoets() {
+        hideAllSections();
+        document.getElementById('poets-content').style.display = 'block';
+        document.getElementById('poets-content').classList.add('active');
+    }
+
+    function showPoetry() {
+        hideAllSections();
+        document.getElementById('classical-content').style.display = 'block';
+        document.getElementById('classical-content').classList.add('active');
+    }
+
+    function showEvents() {
+        hideAllSections();
+        createEventSection();
+    }
+
+    function showAbout() {
+        hideAllSections();
+        createAboutSection();
+    }
+
+    function hideAllSections() {
+        document.getElementById('home-section').style.display = 'none';
+        const displays = document.querySelectorAll('.content-display');
+        displays.forEach(display => {
+            display.style.display = 'none';
+            display.classList.remove('active');
+        });
+    }
+
+    function showCategoryContent(category) {
+        hideAllSections();
         
-        if (likedPoems[poemId]) {
-            // Unlike
-            likedPoems[poemId] = false;
-            btn.classList.remove('liked');
-            btn.textContent = 'أعجبني';
-            likesElement.textContent = currentLikes - 1;
+        if (category === 'classical') {
+            document.getElementById('classical-content').style.display = 'block';
+            document.getElementById('classical-content').classList.add('active');
         } else {
-            // Like
-            likedPoems[poemId] = true;
-            btn.classList.add('liked');
-            btn.textContent = 'أعجبني ❤️';
-            likesElement.textContent = currentLikes + 1;
+            createCategoryContent(category);
         }
     }
 
-    function addNewPoem() {
-        const title = prompt('أدخل عنوان القصيدة:');
-        if (!title) return;
+    function createCategoryContent(category) {
+        const container = document.querySelector('.container');
+        let existingContent = document.getElementById(`${category}-content`);
         
-        const content = prompt('أدخل محتوى القصيدة (استخدم \\n للفصل بين الأبيات):');
-        if (!content) return;
-        
-        const poemsGrid = document.querySelector('.poems-grid');
-        const poemId = Date.now();
-        const formattedContent = content.replace(/\\n/g, '<br>');
-        
-        const newPoem = document.createElement('article');
-        newPoem.className = 'poem-card';
-        newPoem.innerHTML = `
-            <h2 class="poem-title">${title}</h2>
-            <div class="poem-content">${formattedContent}</div>
-            <div class="poem-meta">
-                <div class="stats">
-                    <div class="stat">
-                        <span>👁️</span>
-                        <span id="views${poemId}">1</span>
-                    </div>
-                    <div class="stat">
-                        <span>❤️</span>
-                        <span id="likes${poemId}">0</span>
-                    </div>
-                </div>
-                <button class="like-btn" onclick="toggleLike(${poemId})">أعجبني</button>
-            </div>
-        `;
-        
-        poemsGrid.appendChild(newPoem);
-        
-        // Add entrance animation
-        newPoem.style.opacity = '0';
-        newPoem.style.transform = 'translateY(20px)';
-        setTimeout(() => {
-            newPoem.style.transition = 'all 0.5s ease';
-            newPoem.style.opacity = '1';
-            newPoem.style.transform = 'translateY(0)';
-        }, 100);
+        if (!existingContent) {
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'content-display active';
+            contentDiv.id = `${category}-content`;
+            
+            let content = '';
+            switch(category) {
+                case 'modern':
+                    content = `
+                        <h2 style="color: #8D6E63; margin-bottom: 30px;">الشعر الحر</h2>
+                        <div style="background: #FCF5EB; padding: 25px; border-radius: 10px; margin-bottom: 20px;">
+                            <h3 style="color: #FFA857; margin-bottom: 15px;">أنشودة المطر</h3>
+                            <div style="line-height: 2.2; font-size: 1.1rem;">
+                                عيناك غابتا نخيل ساعة السحر<br>
+                                أو شرفتان راح ينأى عنهما القمر<br>
+                                عيناك حين تبسمان تورق الكروم<br>
+                                وترقص الأضواء... كالأقمار في نهر
+                            </div>
+                            <div style="margin-top: 15px; color: #8D6E63; font-weight: 600;">- بدر شاكر السياب</div>
+                        </div>
+                    `;
+                    break;
+                case 'nabati':
+                    content = `
+                        <h2 style="color: #8D6E63; margin-bottom: 30px;">الشعر النبطي</h2>
+                        <div style="background: #FCF5EB; padding: 25px; border-radius: 10px; margin-bottom: 20px;">
+                            <h3 style="color: #FFA857; margin-bottom: 15px;">من التراث النبطي العراقي</h3>
+                            <div style="line-height: 2.2; font-size: 1.1rem;">
+                                يا راكبين عسى الديار تطيب<br>
+                                واللي يشوف الأهل قلبه يطيب<br>
+                                قولوا لأهل الدار إنا غايبين<br>
+                                لكن قلوبنا معاكم تحوم
+                            </div>
+                            <div style="margin-top: 15px; color: #8D6E63; font-weight: 600;">- من التراث الشعبي</div>
+                        </div>
+                    `;
+                    break;
+                case 'folk':
+                    content = `
+                        <h2 style="color: #8D6E63; margin-bottom: 30px;">الشعر الشعبي</h2>
+                        <div style="background: #FCF5EB; padding: 25px; border-radius: 10px; margin-bottom: 20px;">
+                            <h3 style="color: #FFA857; margin-bottom: 15px;">من الموروث الشعبي العراقي</h3>
+                            <div style="line-height: 2.2; font-size: 1.1rem;">
+                                يا أم العيون السود<br>
+                                يا نبع الحنان<br>
+                                احكيلي حكاية<br>
+                                عن زمان وزمان
+                            </div>
+                            <div style="margin-top: 15px; color: #8D6E63; font-weight: 600;">- من التراث الشعبي العراقي</div>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            contentDiv.innerHTML = content;
+            container.appendChild(contentDiv);
+        } else {
+            existingContent.style.display = 'block';
+            existingContent.classList.add('active');
+        }
     }
 
-    // Increment view count when page loads
-    document.addEventListener('DOMContentLoaded', function() {
-        const viewElements = document.querySelectorAll('[id^="views"]');
-        viewElements.forEach(element => {
-            let currentViews = parseInt(element.textContent);
-            element.textContent = currentViews + 1;
-        });
-    });
-
-    // Add parallax effect to floating elements
-    document.addEventListener('mousemove', function(e) {
-        const floatingElements = document.querySelectorAll('.floating-element');
-        const mouseX = e.clientX / window.innerWidth;
-        const mouseY = e.clientY / window.innerHeight;
+    function createEventSection() {
+        const container = document.querySelector('.container');
+        let existingContent = document.getElementById('events-content');
         
-        floatingElements.forEach((element, index) => {
-            const speed = (index + 1) * 0.02;
-            const x = (mouseX - 0.5) * speed * 100;
-            const y = (mouseY - 0.5) * speed * 100;
-            element.style.transform = `translate(${x}px, ${y}px)`;
-        });
-    });
-</script>
-```
+        if (!existingContent) {
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'content-display active';
+            contentDiv.id = 'events-content';
+            contentDiv.innerHTML = `
+                <h2 style="color: #8D6E63; margin-bottom: 30px;">الفعاليات الشعرية</h2>
+                <div style="display: grid; gap: 20px;">
+                    <div style="background: #FCF5EB; padding: 25px; border-radius: 10px; border-right: 5px solid #FFA857;">
+                        <h3 style="color: #8D6E63; margin-bottom: 10px;">مهرجان الشعر العراقي السنوي</h3>
+                        <p style="color: #666; margin-bottom: 10px;">📅 15 يوليو 2025</p>
+                        <p style="color: #666;">🏛️ المسرح الوطني - بغداد</p>
+                        <p style="margin-top: 15px;">احتفالية كبرى تجمع أبرز شعراء العراق لتقديم أجمل القصائد</p>
+                    </div>
+                    
+                    <div style="background: #FCF5EB; padding: 25px; border-radius: 10px; border-right: 5px solid #E0B700;">
+                        <h3 style="color: #8D6E63; margin-bottom: 10px;">أمسية شعرية: ذكرى الجواهري</h3>
+                        <p style="color: #666; margin-bottom: 10px;">📅 20 يوليو 2025</p>
+                        <p style="color: #666;">🏛️ دار الثقافة - البصرة</p>
+                        <p style="margin-top: 15px;">أمسية خاصة لإحياء ذكرى شاعر العراق الأكبر</p>
+                    </div>
+                </div>
+            `;
+            container.appendChild(contentDiv);
+        } else {
+            existingContent.style.display = 'block';
+            existingContent.classList.add('active');
+        }
+    }
 
-</body>
-</html>
+    function createAboutSection() {
+        const container = document.querySelector('.container');
+        let existingContent = document.getElementById('about-content');
+        
+        if (!existingContent) {
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'content-display active';
+            contentDiv.id = 'about-content';
+            contentDiv.innerHTML = `
+                <h2 style="color: #8D6E63; margin-bottom: 30px;">عن ديوان العراق</h2>
+                <div style="background: #FCF5EB; padding: 30px; border-radius: 15px; line-height:
+```
